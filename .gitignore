@@ -1,0 +1,8 @@
+# Ignore all logfiles and tempfiles.
+/log/*.log
+/tmp
+**.orig
+*.log
+/node_modules
+.DS_Store
+.DS_Store?

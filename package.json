@@ -1,0 +1,27 @@
+{
+  "name": "ava_voice_recognition",
+  "version": "1.0.0",
+  "description": "voice recognition personal assistant",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/altonelli/ava_voice_recognition.git"
+  },
+  "author": "Arthur Tonelli",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.14.1",
+    "ejs": "^2.4.1",
+    "express": "^4.13.3",
+    "mongoose": "^4.4.19",
+    "passport": "^0.3.2"
+  },
+  "bugs": {
+    "url": "https://github.com/altonelli/ava_voice_recognition/issues"
+  },
+  "homepage": "https://github.com/altonelli/ava_voice_recognition#readme"
+}
