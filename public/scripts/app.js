@@ -36,9 +36,10 @@ function config($stateProvider, $urlRouterProvider,$locationProvider){
       url: '/signup',
       views: {
         "content": {
-          templateUrl: '/public/templates/signup.html'
+          templateUrl: '/public/templates/signup.html',
+          controller: "SignUpController as signup"
         }
-      }
+      },
     });
 
 
