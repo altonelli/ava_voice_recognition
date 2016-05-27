@@ -1,5 +1,5 @@
 var mongoose = require("mongoose");
-mongoose.connect("mongodb://localhost/taco_test");
+mongoose.connect("mongodb://localhost/avaApp_test");
 
 
 

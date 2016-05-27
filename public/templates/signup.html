@@ -1,8 +1,8 @@
-<form class="" ng-submit="signup.createUser()">
-  <label for="first_name">First</label><input type="text" ng-model="signup.user.firstName">
-  <label for="last_name">Last Name</label><input type="text" ng-model="signup.user.lastName">
-  <label for="email">Email</label><input type="text" ng-model="signup.user.email">
-  <label for="password">Password</label><input type="password" ng-model="signup.user.password">
+<form class="" ng-submit="userCtrl.signUp()">
+  <label for="first_name">First</label><input type="text" ng-model="userCtrl.user.firstName">
+  <label for="last_name">Last Name</label><input type="text" ng-model="userCtrl.user.lastName">
+  <label for="email">Email</label><input type="text" ng-model="userCtrl.user.username">
+  <label for="password">Password</label><input type="password" ng-model="userCtrl.user.password">
   <input type="submit" value="Sign Up">
 </form>
 

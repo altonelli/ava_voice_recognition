@@ -1,4 +1,5 @@
-<form class="" action="index.html" method="post">
-<label for="email">Email</label><input type="text" name="email" value="">
-<label for="password">Password</label><input type="password" name="password" value="">
+<form class="" ng-submit="userCtrl.logIn()">
+  <label for="email">Email</label><input type="text" ng-model="userCtrl.user.username">
+  <label for="password">Password</label><input type="password" ng-model="userCtrl.user.password">
+  <input type="submit" name="name" value="Log In">
 </form>
