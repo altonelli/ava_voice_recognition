@@ -10,11 +10,16 @@ angular
     vm = this;
 
     vm.places = function(){
+      console.log("btn ctrl",initialLocation);
       $http({
         method: "POST",
         url: "/api/places",
         data: {
-          local: "Italian food"
+          search: "Italian food",
+          location: {
+            lat: initialLocation.lat,
+            long: initialLocation.long
+          }
         }
       }).then(function success(res){
         console.log(res.data);
@@ -43,12 +48,12 @@ angular
         method: "POST",
         url: "/api/weather",
         data: {
-          location: "Berkeley",
+          location: "Berkeley, ca",
           date: Date.now()
         }
-      }).then(function success(){
+      }).then(function success(res){
         console.log(res.data);
-      }, function error(){
+      }, function error(res){
         console.log(res.data);
       });
     };
