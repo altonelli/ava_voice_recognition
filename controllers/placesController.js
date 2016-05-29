@@ -50,10 +50,33 @@ function places(req, taco){
 
 
 
-function directions(req, res){
+function directions(req, taco){
   var start = req.body.locationStart;
   var end = req.body.locationEnd;
+  console.log(start);
+  console.log(end);
 
+  var url = "https://maps.googleapis.com/maps/api/directions/json?origin="+start+"&destination="+end+"&key=" + googleKey;
+
+  request(url, function(err,res,body){
+    console.log(body);
+    var result = JSON.parse(body);
+    var response = {};
+    response.text = "Here is your route.";
+    response.waypoints = result.geocoded_waypoints;
+    response.distance = result.routes[0].legs[0].distance.text;
+    response.duration = result.routes[0].legs[0].duration.text;
+    response.steps = [];
+    result.routes[0].legs[0].steps.forEach(function(step,idx){
+      var obj = {
+        distance: step.distance.text,
+        duration: step.duration.text,
+        text: step.html_instructions
+      };
+      response.steps.push(obj);
+    });
+    taco.json(response);
+  });
 
 
 }

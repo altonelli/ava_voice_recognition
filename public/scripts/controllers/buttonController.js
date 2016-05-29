@@ -33,8 +33,8 @@ angular
         method: "POST",
         url: "/api/directions",
         data: {
-          start: "Berkeley",
-          end: "San Francisco"
+          locationStart: "Berkeley",
+          locationEnd: "San Francisco"
         }
       }).then(function success(res){
         console.log(res.data);
