@@ -5,20 +5,24 @@
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.9/angular.min.js"></script>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.3.0/angular-ui-router.js"></script>
 
+    <script type="text/javascript" src="/public/scripts/microphone-0.7.0/microphone.min.js"></script>
     <script type="text/javascript" src="/public/scripts/app.js"></script>
     <script type="text/javascript" src="/public/scripts/controllers/userController.js"></script>
+    <script type="text/javascript" src="/public/scripts/controllers/witController.js"></script>
+    <script type="text/javascript" src="/public/scripts/controllers/buttonController.js"></script>
 
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" media="screen" title="no title" charset="utf-8">
+    <link rel='stylesheet' href='/public/scripts/microphone-0.7.0/microphone.min.css' />
 
     <title>ava</title>
   </head>
   <body>
 
       <div class="" data-ui-view="navbar"></div>
-      
+
       <div data-ui-view="content"></div>
 
-    </div>
+      <div data-ui-view="button"></div>
 
 
   </body>

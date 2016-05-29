@@ -17,5 +17,10 @@ function create(req,res){
 }
 
 
+module.exports = {
+  create: create,
+};
+
+
 
 /////NOT FINDING THIS FUNCTION FOR CALLBACK

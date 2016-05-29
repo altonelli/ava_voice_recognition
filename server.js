@@ -68,8 +68,13 @@ app.get('/logout', function (req, res) {
   res.json({"yeah":"logged out"});
 });
 
+app.post('/api/greeting', controllers.greeting.create);
+app.post('/api/greeting/question', controllers.greetingquestion.create);
+app.post('/api/search', controllers.search.search);
 
-
+app.post('/api/places', controllers.places.places);
+app.post('/api/directions', controllers.places.directions);
+app.post('/api/weather', controllers.weather.forecast);
 
 
 

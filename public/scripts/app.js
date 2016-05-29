@@ -2,7 +2,6 @@ angular
   .module('avaApp', ['ui.router'])
   .config(config);
 
-
 config.$inject = ['$stateProvider', '$urlRouterProvider','$locationProvider'];
 
 function config($stateProvider, $urlRouterProvider,$locationProvider){
@@ -29,7 +28,12 @@ function config($stateProvider, $urlRouterProvider,$locationProvider){
           controller: "UserController as userCtrl"
         },
         "content": {
-          templateUrl: '/public/templates/main.html'
+          templateUrl: '/public/templates/main.html',
+          controller: 'WitController as Wit'
+        },
+        "button": {
+          templateUrl: '/public/template/button.html',
+          controller: 'ButtonController as Button'
         }
       }
     })
