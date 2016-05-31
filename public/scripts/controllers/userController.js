@@ -4,9 +4,9 @@ angular
   .module('avaApp')
   .controller("UserController", UserController);
 
-  UserController.$inject = ['$http'];
+  UserController.$inject = ['$http', '$state'];
 
-  function UserController( $http ){
+  function UserController( $http, $state ){
     console.log("in sign up ctrl function");
     vm = this;
 

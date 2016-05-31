@@ -6,6 +6,7 @@
 
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.9/angular.min.js"></script>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.3.0/angular-ui-router.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/angular-sanitize/1.5.6/angular-sanitize.js"></script>
 
     <script type="text/javascript" src="/bower_components/ng-maps/dist/ng-maps.js"></script>
 
@@ -14,6 +15,9 @@
     <script type="text/javascript" src="/public/scripts/controllers/userController.js"></script>
     <script type="text/javascript" src="/public/scripts/controllers/witController.js"></script>
     <script type="text/javascript" src="/public/scripts/controllers/buttonController.js"></script>
+    <script type="text/javascript" src="/public/scripts/controllers/weatherController.js"></script>
+    <script type="text/javascript" src="/public/scripts/controllers/directionsController.js"></script>
+    <script type="text/javascript" src="/public/scripts/controllers/placesController.js"></script>
 
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" media="screen" title="no title" charset="utf-8">
     <link rel='stylesheet' href='/public/scripts/microphone-0.7.0/microphone.min.css' />
@@ -30,6 +34,9 @@
       <div data-ui-view="content"></div>
 
       <div data-ui-view="button"></div>
+
+      <div ui-view="result"></div>
+
 
 
   </body>

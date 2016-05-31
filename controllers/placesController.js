@@ -67,6 +67,8 @@ function directions(req, taco){
     response.waypoints = result.geocoded_waypoints;
     response.distance = result.routes[0].legs[0].distance.text;
     response.duration = result.routes[0].legs[0].duration.text;
+    response.start = result.routes[0].legs[0].start_address;
+    response.end = result.routes[0].legs[0].end_address;
     response.steps = [];
     result.routes[0].legs[0].steps.forEach(function(step,idx){
       var obj = {
@@ -76,6 +78,7 @@ function directions(req, taco){
       };
       response.steps.push(obj);
     });
+    console.log(response);
     taco.json(response);
   });
 

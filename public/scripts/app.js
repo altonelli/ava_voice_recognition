@@ -1,5 +1,5 @@
 angular
-  .module('avaApp', ['ui.router', 'ngMaps'])
+  .module('avaApp', ['ui.router', 'ngMaps', 'ngSanitize'])
   .config(config);
 
 config.$inject = ['$stateProvider', '$urlRouterProvider','$locationProvider'];
@@ -37,13 +37,24 @@ function config($stateProvider, $urlRouterProvider,$locationProvider){
           // },
           templateUrl: '/public/templates/button.html',
           controller: 'ButtonController as Button'
+        },
+        "result": {
+          template: "result in main state"
         }
       },
     })
     .state("main.weather", {
-      "weather": {
-        templateUrl: '/public/templates/weather.html',
-        controller: 'ButtonController as Button'
+      views:{
+        "result@": {
+          templateUrl: '/public/templates/weather.html',
+          controller: 'WeatherController as Weather',
+          onEnter: function(){
+            console.log("on enter ins result");
+          }
+        }
+      },
+      onEnter: function(){
+        console.log("ENTERING");
       }
     })
     .state('login', {

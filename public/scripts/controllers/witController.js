@@ -4,9 +4,9 @@ angular
   .module('avaApp')
   .controller("WitController", WitController);
 
-  WitController.$inject = ['$http'];
+  WitController.$inject = ['$http', '$state'];
 
-  function WitController( $http ){
+  function WitController( $http, $state ){
 
 
     var mic = new Wit.Microphone(document.getElementById("microphone"));
