@@ -1,0 +1,21 @@
+<div class="">weather html
+
+</div>
+
+<!-- Button.weatherInfo was the returned json -->
+
+<div class="col-sm-6 col-sm-offset-3">
+  <ul class="list-group">
+    <a target="_blank" ng-href="{{Button.weatherInfo.current.link}}"><li class="list-group-item"><div class="row">
+      <img src="{{Button.weatherInfo.current.image}}" class="img-responsive col-xs-2" alt="" />
+      {{Button.weatherInfo.current.text}}</div></li></a>
+  </ul>
+
+  <ul class="list-group">
+    <div class="" ng-repeat="item in Button.weatherInfo.forecast.array">
+      <a target="_blank" ng-href="{{Button.weatherInfo.current.link}}"><li class="list-group-item"><div class="row">
+        <img src="{{item.image}}" class="img-responsive col-xs-2" alt="" />
+        {{item.title}} | {{item.text}}</div></li></a>
+    </div>
+  </ul>
+</div>

@@ -88,7 +88,7 @@ angular
     }
   };
 
-  mic.connect("");
+  mic.connect("JVSLWMBPAXC2MELTSRHSARVEXWM35CIZ");
 
   function concatKeyValue (k, v) {
     if (typeof v !== "string") {

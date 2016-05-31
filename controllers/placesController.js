@@ -8,19 +8,20 @@ function places(req, taco){
   var url = "https://maps.googleapis.com/maps/api/place/nearbysearch/json?"+location+"&radius=500&name="+search+"&key="+googleKey;
   var topList = [];
   request(url,function(err,res,body){
-    // console.log(body);
+    console.log(body);
     var allResults = JSON.parse(body).results;
     allResults.forEach(function(result,idx){
       if (idx < 5){
-        var obj = {}
+        var obj = {};
         obj.name = result.name;
         obj.id = result.place_id;
         obj.address = result.vicinity;
         obj.price = result.price_level;
         obj.rating = result.rating;
+        obj.open = result.opening_hours.open_now;
         obj.geometry = {
           lat: result.geometry.location.lat,
-          long: result.geometry.location.long
+          long: result.geometry.location.lng
         };
         var detailsUrl = "https://maps.googleapis.com/maps/api/place/details/json?placeid="+obj.id+"&key="+googleKey;
         request(detailsUrl, function(err,res,body){

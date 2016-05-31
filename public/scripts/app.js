@@ -1,5 +1,5 @@
 angular
-  .module('avaApp', ['ui.router'])
+  .module('avaApp', ['ui.router', 'ngMaps'])
   .config(config);
 
 config.$inject = ['$stateProvider', '$urlRouterProvider','$locationProvider'];
@@ -20,7 +20,7 @@ function config($stateProvider, $urlRouterProvider,$locationProvider){
         }
       }
     })
-    .state('active', {
+    .state('main', {
       url: '/main',
       views: {
         "navbar": {
@@ -32,9 +32,18 @@ function config($stateProvider, $urlRouterProvider,$locationProvider){
           controller: 'WitController as Wit'
         },
         "button": {
+          // views: {
+          //   "weather"
+          // },
           templateUrl: '/public/templates/button.html',
           controller: 'ButtonController as Button'
         }
+      },
+    })
+    .state("main.weather", {
+      "weather": {
+        templateUrl: '/public/templates/weather.html',
+        controller: 'ButtonController as Button'
       }
     })
     .state('login', {
