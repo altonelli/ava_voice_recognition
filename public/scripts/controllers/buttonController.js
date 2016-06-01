@@ -10,14 +10,10 @@ angular
     vm.text = "";
     vm.test = null;
 
+
     vm.map = {
       center: [37.5,-122.5],
       zoom: 10,
-      options: function(){
-        return {
-          control: {}
-        };
-      }
     };
 
     vm.changeStateToWeather = function(){
@@ -104,11 +100,27 @@ angular
             var long = el.lng();
             var polyPoint = [lat,long];
             // console.log(polyPoint);
-            var previousPoint = coords[coords.length-1][1];
+            var previousPoint;
+            if (coords[coords.length-1] !== undefined){
+              previousPoint = coords[coords.length-1][1];
+            } else {
+              previousPoint = polyPoint;
+            }
             var polyLine = [previousPoint,polyPoint];
+
             coords.push(polyLine);
           });
         });
+        vm.map = {
+          center: [37.5,-122.5],
+          zoom: 10,
+          options: function(){
+            return {
+              control: {}
+            };
+          }
+        };
+        console.log(coords);
         return coords;
       });
     }
@@ -128,6 +140,18 @@ angular
       });
     };
 
+    vm.renderMap = function(){
+      vm.polylines = {
+        coords: getCoords(request),
+        options: function(){
+          return {
+            strokeColor: "#d35400"
+          };
+        }
+      };
+    };
+
+    vm.renderMap();
 
 
   }

@@ -6,6 +6,7 @@ var weatherKey = process.env['WEATHER_SECRET_KEY'];
 
 function forecast(req,taco){
   var location = req.body.location;
+  
 
   var geocodeUrl = "https://maps.googleapis.com/maps/api/geocode/json?address="+ location +"&key=" + googleKey;
 

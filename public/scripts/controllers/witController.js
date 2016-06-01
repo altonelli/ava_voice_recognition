@@ -33,12 +33,13 @@ angular
         method: 'POST',
         url: '/api/greeting',
         data: {
-          name: entities.contact.value
+          name: "ava"
         }
       }).then(function success(res){
         console.log(res.data.text);
         speak(res.data.text);
       }, function error(res){
+        speak("My apologies, an error ocurred. Could you please repeat your request?");
         console.log("error:", res);
       });
     } else if ( entities.intent.value === "greeting:question"){
@@ -49,9 +50,10 @@ angular
         console.log(res.data.text);
         speak(res.data.text);
       }, function error(res){
+        speak("My apologies, an error ocurred. Could you please repeat your request?");
         console.log("error:", res);
       });
-    } else if ( entities.intent.value === "search" ){
+    } else if ( entities.intent.value === "search" && entities.search_query){
       $http({
         method: 'POST',
         url: '/api/search',
@@ -64,7 +66,68 @@ angular
         func(res.data.url);
         speak(res.data.text);
       }, function error(res){
+        speak("My apologies, an error ocurred. Could you please repeat your request?");
         console.log('Error:',res);
+      });
+    } else if (entities.intent.value === "weather") {
+      var loc;
+      var date = new Date();
+      if (entities.location){
+        loc = entities.location.value;
+      }
+      if (entities.date){
+        date = entities.date.value;
+      }
+      $http({
+        method: 'POST',
+        url: '/api/weather',
+        data: {
+          location: loc,
+          date: date
+        }
+      }).then(function success(res){
+        console.log(res.data);
+        speak(res.data.current.text);
+      }, function error(res){
+        speak("My apologies, an error ocurred. Could you please repeat your request?");
+        console.log('Error:',res);
+      });
+    } else if(entities.intent.value === "places" && entities.local_search_query){
+      var query = entities.local_search_query.value;
+      console.log("query",query);
+      console.log("location",initialLocation);
+      $http({
+        method: "POST",
+        url: "/api/places",
+        data: {
+          search: query,
+          location: {
+            lat: initialLocation.lat,
+            long: initialLocation.long
+          }
+        }
+      }).then(function success(res){
+        console.log(res.data);
+        speak(res.data.text);
+      }, function error(res){
+        speak("My apologies, an error ocurred. Could you please repeat your request?");
+        console.log(res);
+      });
+    } else if(entities.intent.value === "directions" && entities.start && entities.end){
+      console.log("Directions!");
+      $http({
+        method: "POST",
+        url: "/api/directions",
+        data: {
+          locationStart: entities.start.value,
+          locationEnd: entities.end.value
+        }
+      }).then(function success(res){
+        console.log(res.data);
+        speak(res.data.text)
+      }, function error(res){
+        speak("My apologies, an error ocurred. Could you please repeat your request?");
+        console.log(res);
       });
     } else {
       speak("I'm sorry I did not understand that.");

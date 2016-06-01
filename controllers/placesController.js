@@ -18,7 +18,9 @@ function places(req, taco){
         obj.address = result.vicinity;
         obj.price = result.price_level;
         obj.rating = result.rating;
-        obj.open = result.opening_hours.open_now;
+        if (result.opening_hours){
+          obj.open = result.opening_hours.open_now;
+        }
         obj.geometry = {
           lat: result.geometry.location.lat,
           long: result.geometry.location.lng
@@ -63,7 +65,7 @@ function directions(req, taco){
     console.log(body);
     var result = JSON.parse(body);
     var response = {};
-    response.text = "Here is your route.";
+    response.text = "Here is your route. It will be "+result.routes[0].legs[0].distance.text+"les and take about "+(result.routes[0].legs[0].duration.text).slice(0,-1)+"utes.";
     response.waypoints = result.geocoded_waypoints;
     response.distance = result.routes[0].legs[0].distance.text;
     response.duration = result.routes[0].legs[0].duration.text;
