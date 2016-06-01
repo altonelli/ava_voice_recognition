@@ -1,15 +1,15 @@
-<map ng-transclude class="google-map"
-center='Button.map.center'
-zoom='Button.map.zoom'>
-<marker position="Button.marker.position" decimals="Button.marker.decimals" options="Button.marker.options"></marker>
-<div class="" ng-repeat="marker in Button.markers">
-  <marker position="marker.position" decimals="marker.decimals" options="marker.options" events="marker.events"></marker>
-</div>
+
+  <map ng-transclude class="google-map"
+  center='Places.map.center'
+  zoom='Places.map.zoom'>
+  <div class="" ng-repeat="marker in Places.markers">
+    <marker position="marker.position" decimals="marker.decimals" options="marker.options" events="marker.events"></marker>
+  </div>
 </map>
 
 
 <ul class="list-group">
-<div class="" ng-repeat="place in Button.placesInfo.array">
+<div class="" ng-repeat="place in Places.placesInfo.array">
   <a target="_blank" ng-href="{{place.link}}">
     <li class="list-group-item">
       <div class="row">
@@ -44,10 +44,10 @@ zoom='Button.map.zoom'>
 </ul>
 
 
-<!-- Button.placesInfo was the JSON return of the backend -->
+<!-- Places.placesInfo was the JSON return of the backend -->
 
 
-<script type="text/javascript">
+<!-- <script type="text/javascript">
 vm.map = {center: [37.8716, -122.2727],
   zoom: 12 };
 
@@ -159,4 +159,4 @@ vm.getMarkers = function(){
 };
 
 vm.getMarkers();
-</script>
+</script> -->

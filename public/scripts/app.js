@@ -38,9 +38,6 @@ function config($stateProvider, $urlRouterProvider,$locationProvider){
           templateUrl: '/public/templates/button.html',
           controller: 'ButtonController as Button'
         },
-        "result": {
-          template: "result in main state"
-        }
       },
     })
     .state("main.weather", {
@@ -48,14 +45,16 @@ function config($stateProvider, $urlRouterProvider,$locationProvider){
         "result@": {
           templateUrl: '/public/templates/weather.html',
           controller: 'WeatherController as Weather',
-          onEnter: function(){
-            console.log("on enter ins result");
-          }
         }
       },
-      onEnter: function(){
-        console.log("ENTERING");
-      }
+    })
+    .state("main.places", {
+      views:{
+        "result@": {
+          templateUrl: '/public/templates/places.html',
+          controller: 'PlacesController as Places',
+        }
+      },
     })
     .state('login', {
       url: '/login',
