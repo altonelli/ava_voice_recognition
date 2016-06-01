@@ -4,9 +4,9 @@ angular
   .module('avaApp')
   .controller("WitController", WitController);
 
-  WitController.$inject = ['$http', '$state'];
+  WitController.$inject = ['$http', '$state','WitService'];
 
-  function WitController( $http, $state ){
+  function WitController( $http, $state, WitService ){
 
 
     var mic = new Wit.Microphone(document.getElementById("microphone"));
@@ -27,6 +27,9 @@ angular
   };
   mic.onresult = function (intent, entities, res) {
     console.log(intent, entities, res);
+    WitService.intent = intent;
+    WitService.entities = entities;
+    WitService.res = res;
 
     if (entities.intent.value === "greeting"){
       $http({
@@ -70,28 +73,29 @@ angular
         console.log('Error:',res);
       });
     } else if (entities.intent.value === "weather") {
-      var loc;
-      var date = new Date();
-      if (entities.location){
-        loc = entities.location.value;
-      }
-      if (entities.date){
-        date = entities.date.value;
-      }
-      $http({
-        method: 'POST',
-        url: '/api/weather',
-        data: {
-          location: loc,
-          date: date
-        }
-      }).then(function success(res){
-        console.log(res.data);
-        speak(res.data.current.text);
-      }, function error(res){
-        speak("My apologies, an error ocurred. Could you please repeat your request?");
-        console.log('Error:',res);
-      });
+      $state.go('main.weather');
+      // var loc;
+      // var date = new Date();
+      // if (entities.location){
+      //   loc = entities.location.value;
+      // }
+      // if (entities.date){
+      //   date = entities.date.value;
+      // }
+      // $http({
+      //   method: 'POST',
+      //   url: '/api/weather',
+      //   data: {
+      //     location: loc,
+      //     date: date
+      //   }
+      // }).then(function success(res){
+      //   console.log(res.data);
+      //   speak(res.data.current.text);
+      // }, function error(res){
+      //   speak("My apologies, an error ocurred. Could you please repeat your request?");
+      //   console.log('Error:',res);
+      // });
     } else if(entities.intent.value === "places" && entities.local_search_query){
       var query = entities.local_search_query.value;
       console.log("query",query);
