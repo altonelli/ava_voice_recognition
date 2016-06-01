@@ -22,24 +22,5 @@ angular
 
     getForecast();
 
-    // vm.weather = function($state){
-    //   $http({
-    //     method: "POST",
-    //     url: "/api/weather",
-    //     data: {
-    //       location: "Berkeley, ca",
-    //       date: Date.now()
-    //     }
-    //   }).then(function success(res){
-    //     console.log(res.data);
-    //     vm.text = res.data.current.text;
-    //     vm.info = res.data;
-    //   }, function error(res){
-    //     console.log(res.data);
-    //   });
-    // };
-    //
-    // vm.weather();
-
 
   }

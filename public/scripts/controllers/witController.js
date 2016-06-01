@@ -74,49 +74,31 @@ angular
       });
     } else if (entities.intent.value === "weather") {
       $state.go('main.weather');
-      // var loc;
-      // var date = new Date();
-      // if (entities.location){
-      //   loc = entities.location.value;
-      // }
-      // if (entities.date){
-      //   date = entities.date.value;
-      // }
+    } else if(entities.intent.value === "places" && entities.local_search_query){
+
+      $state.go('main.places');
+
+
+      // var query = entities.local_search_query.value;
+      // console.log("query",query);
+      // console.log("location",initialLocation);
       // $http({
-      //   method: 'POST',
-      //   url: '/api/weather',
+      //   method: "POST",
+      //   url: "/api/places",
       //   data: {
-      //     location: loc,
-      //     date: date
+      //     search: query,
+      //     location: {
+      //       lat: initialLocation.lat,
+      //       long: initialLocation.long
+      //     }
       //   }
       // }).then(function success(res){
       //   console.log(res.data);
-      //   speak(res.data.current.text);
+      //   speak(res.data.text);
       // }, function error(res){
       //   speak("My apologies, an error ocurred. Could you please repeat your request?");
-      //   console.log('Error:',res);
+      //   console.log(res);
       // });
-    } else if(entities.intent.value === "places" && entities.local_search_query){
-      var query = entities.local_search_query.value;
-      console.log("query",query);
-      console.log("location",initialLocation);
-      $http({
-        method: "POST",
-        url: "/api/places",
-        data: {
-          search: query,
-          location: {
-            lat: initialLocation.lat,
-            long: initialLocation.long
-          }
-        }
-      }).then(function success(res){
-        console.log(res.data);
-        speak(res.data.text);
-      }, function error(res){
-        speak("My apologies, an error ocurred. Could you please repeat your request?");
-        console.log(res);
-      });
     } else if(entities.intent.value === "directions" && entities.start && entities.end){
       console.log("Directions!");
       $http({

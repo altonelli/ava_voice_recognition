@@ -2,9 +2,9 @@ angular
   .module('avaApp')
   .controller("ButtonController", ButtonController);
 
-  ButtonController.$inject = ['$http', '$state'];
+  ButtonController.$inject = ['$http', '$state','WitService'];
 
-  function ButtonController( $http, $state ){
+  function ButtonController( $http, $state,WitService ){
     vm = this;
     vm.list = [];
     vm.text = "";
@@ -15,6 +15,21 @@ angular
       center: [37.5,-122.5],
       zoom: 10,
     };
+
+    vm.testing = function(){
+      WitService.entities = {
+        intent: {
+          value: "places"
+        },
+        local_search_query: {
+          value: "Restaurant"
+        }
+      };
+      $state.go('main.places');
+      console.log("exit test btn",WitService.entities);
+    };
+
+
 
     vm.changeStateToWeather = function(){
       console.log("changeing from state",$state.current);
