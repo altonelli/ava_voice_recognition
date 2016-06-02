@@ -1,4 +1,3 @@
-console.log("IN PLACES SERVICE");
 angular.module('avaApp')
 .service('PlacesService', PlacesService);
 

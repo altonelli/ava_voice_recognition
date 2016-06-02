@@ -1,16 +1,16 @@
 <map ng-transclude class="google-map"
-center='Button.map.center'
-zoom='Button.map.zoom'>
-<polylines coords="Button.polylines.coords" options="Button.polylines.options"></polylines>
+center='Directions.map.center'
+zoom='Directions.map.zoom'>
+<polylines coords="Directions.polyLines.coords" options="Directions.polyLines.options"></polylines>
 </map>
 
 
 <ul class="list-group">
-  <li class="list-group-item">{{Button.directionsInfo.text}}</br>It is {{Button.directionsInfo.distance}} and will take about {{Button.directionsInfo.duration}}</li>
+  <li class="list-group-item">{{Directions.result.text}}</br>It is {{Directions.result.distance}} and will take about {{Directions.result.duration}}</li>
 </ul>
 
 <ul class="list-group">
-  <div class="" ng-repeat="step in Button.directionsInfo.steps">
+  <div class="" ng-repeat="step in Directions.result.steps">
     <li class="list-group-item">
       <div class="row">
         <div class="col-xs-8">

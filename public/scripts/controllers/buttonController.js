@@ -19,13 +19,16 @@ angular
     vm.testing = function(){
       WitService.entities = {
         intent: {
-          value: "places"
+          value: "directions"
         },
-        local_search_query: {
-          value: "Restaurant"
-        }
+        start: {
+          value: "Berkeley"
+        },
+        end: {
+          value: "San Francisco"
+        },
       };
-      $state.go('main.places');
+      $state.go('main.directions');
       console.log("exit test btn",WitService.entities);
     };
 
@@ -106,7 +109,7 @@ angular
     function getCoords(request){
       directionsService.route(request, function(res,status){
         var coords = [];
-        console.log(res);
+        // console.log(res);
         var steps = res.routes[0].legs[0].steps;
         steps.forEach(function(step,idx){
           // var polyPath = [];
@@ -135,7 +138,7 @@ angular
             };
           }
         };
-        console.log(coords);
+        // console.log(coords);
         return coords;
       });
     }
@@ -151,7 +154,7 @@ angular
       }).then(function success(res){
         console.log(res.data);
       }, function error(res){
-        console.log(res.data);
+        // console.log(res.data);
       });
     };
 

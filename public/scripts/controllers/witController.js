@@ -78,43 +78,26 @@ angular
 
       $state.go('main.places');
 
+    } else if(entities.intent.value === "directions" && entities.start && entities.end){
 
-      // var query = entities.local_search_query.value;
-      // console.log("query",query);
-      // console.log("location",initialLocation);
+      $state.go('main.directions');
+
+
+      console.log("Directions!");
       // $http({
       //   method: "POST",
-      //   url: "/api/places",
+      //   url: "/api/directions",
       //   data: {
-      //     search: query,
-      //     location: {
-      //       lat: initialLocation.lat,
-      //       long: initialLocation.long
-      //     }
+      //     locationStart: entities.start.value,
+      //     locationEnd: entities.end.value
       //   }
       // }).then(function success(res){
       //   console.log(res.data);
-      //   speak(res.data.text);
+      //   speak(res.data.text)
       // }, function error(res){
       //   speak("My apologies, an error ocurred. Could you please repeat your request?");
       //   console.log(res);
       // });
-    } else if(entities.intent.value === "directions" && entities.start && entities.end){
-      console.log("Directions!");
-      $http({
-        method: "POST",
-        url: "/api/directions",
-        data: {
-          locationStart: entities.start.value,
-          locationEnd: entities.end.value
-        }
-      }).then(function success(res){
-        console.log(res.data);
-        speak(res.data.text)
-      }, function error(res){
-        speak("My apologies, an error ocurred. Could you please repeat your request?");
-        console.log(res);
-      });
     } else {
       speak("I'm sorry I did not understand that.");
     }

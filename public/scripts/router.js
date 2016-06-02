@@ -59,6 +59,20 @@ function config($stateProvider, $urlRouterProvider,$locationProvider){
         }
       },
     })
+    .state("main.directions", {
+      views:{
+        "result@": {
+          templateUrl: '/public/templates/directions.html',
+          controller: 'DirectionsController as Directions',
+          resolve: {
+            DirectionsService: 'DirectionsService',
+            directions: function(DirectionsService){
+              return DirectionsService.directions();
+            }
+          }
+        }
+      },
+    })
     .state('login', {
       url: '/login',
       views: {
