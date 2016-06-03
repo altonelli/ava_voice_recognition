@@ -1,7 +1,8 @@
 
 <map ng-transclude class="google-map"
 center='Places.map.center'
-zoom='Places.map.zoom'>
+zoom='Places.map.zoom'
+events='Places.map.events'>
   <marker position="Places.currentLocation.position" decimals="Places.currentLocation.decimals" options="Places.currentLocation.options" events="Places.currentLocation.events"></marker>
   <div class="" ng-repeat="marker in Places.markers">
     <marker position="marker.position" decimals="marker.decimals" options="marker.options" events="marker.events"></marker>

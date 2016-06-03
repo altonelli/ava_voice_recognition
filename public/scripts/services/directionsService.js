@@ -13,17 +13,29 @@ self.polyLines = {
   coords: [],
   options: function(){
     return {
-      strokeColor: "#d35400"
+      strokeColor: "#42f480"
     };
   }
 };
+self.startMarker = {};
+self.endMarker = {};
+
+
 self.map = {
-  center: [37.5,-122.5],
+  center: [37.8236,-122.3706],
   zoom: 10,
   options: function(){
     return {
       control: {}
     };
+  },
+  events: {
+    idle: function (e,p,map,points){
+      var bounds = new google.maps.LatLngBounds();
+      bounds.extend(new google.maps.LatLng(self.polyLines.coords[0][0][0],self.polyLines.coords[0][0][1]));
+      bounds.extend(new google.maps.LatLng(self.polyLines.coords[self.polyLines.coords.length-1][1][0],self.polyLines.coords[self.polyLines.coords.length-1][1][1]));
+      p.fitBounds(bounds);
+    }
   }
 };
 
@@ -47,7 +59,7 @@ self.directions = function(){
     if(status !== google.maps.DirectionsStatus.OK) {
       def.reject({error: res});
     } else {
-    self.result.text = "Here is your route. It will be "+res.routes[0].legs[0].distance.text+"les and take about "+(res.routes[0].legs[0].duration.text).slice(0,-1)+"utes.";
+    self.result.text = "Here is your route. It will be "+res.routes[0].legs[0].distance.text+"les and take about "+res.routes[0].legs[0].duration.text+".";
     self.result.waypoints = res.geocoded_waypoints;
     self.result.distance = res.routes[0].legs[0].distance.text;
     self.result.duration = res.routes[0].legs[0].duration.text;
@@ -78,14 +90,36 @@ self.directions = function(){
         self.polyLines.coords.push(line);
       });
     });
+    self.startMarker = {
+      position: [self.polyLines.coords[0][0][0],self.polyLines.coords[0][0][1]],
+      decimals: 4,
+      options: function(){
+        return {
+          label: "A",
+          cursor: self.result.start,
+        };
+      },
+    };
+    self.endMarker = {
+        position: [self.polyLines.coords[self.polyLines.coords.length-1][1][0],self.polyLines.coords[self.polyLines.coords.length-1][1][1]],
+        decimals: 4,
+        options: function(){
+          return {
+            label: "B",
+            cursor: self.result.end,
+          };
+        },
+      };
     console.log(self.result);
     console.log(self.polyLines.coords);
+    // self.map.events.resize();
     def.resolve(res);
   }
   });
 
 
   console.log("BUT WAIT THERE MORE");
+
 
   return def.promise;
 

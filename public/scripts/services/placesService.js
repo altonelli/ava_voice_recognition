@@ -28,6 +28,21 @@ self.currentLocation = {
     },
   };
 
+  self.map = {
+    center: [initialLocation.lat,initialLocation.long],
+    zoom: 16,
+    events: {
+      idle: function (e,p,map,points){
+        var bounds = new google.maps.LatLngBounds();
+        self.markers.forEach(function(marker){
+          console.log(marker.position[0],marker.position[1]);
+          bounds.extend(new google.maps.LatLng(marker.position[0],marker.position[1]));
+        });
+        p.fitBounds(bounds);
+      }
+    }
+  };
+
 
   self.getPlaces = function(){
     var defPlaces = $q.defer();

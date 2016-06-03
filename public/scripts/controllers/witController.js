@@ -13,7 +13,7 @@ angular
     document.getElementById("info").innerHTML = msg;
   };
   mic.onready = function () {
-    info("Microphone is ready to record");
+    info("I am ready to help you.");
   };
   mic.onaudiostart = function () {
     info("Recording started");
@@ -83,6 +83,13 @@ angular
 
       $state.go('main.places');
 
+    } else if(entities.intent.value === "places" && entities.search_query){
+      WitService.entities.local_search_query = {};
+      WitService.entities.local_search_query.value = entities.search_query.value;
+      // $state.go('main.rendering');
+
+      $state.go('main.places');
+
     } else if(entities.intent.value === "directions" && entities.start && entities.end){
 
       // $state.go('main.rendering');
@@ -107,7 +114,7 @@ angular
         }
       }
 
-      document.getElementById("result").innerHTML = result;
+      // document.getElementById("result").innerHTML = result;
     }
   };
 

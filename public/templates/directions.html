@@ -1,12 +1,16 @@
 <map ng-transclude class="google-map"
 center='Directions.map.center'
-zoom='Directions.map.zoom'>
+zoom='Directions.map.zoom'
+events='Directions.map.events'
+>
+<marker position="Directions.startMarker.position" decimals="Directions.startMarker.decimals" options="Directions.startMarker.options"></marker>
+<marker position="Directions.endMarker.position" decimals="Directions.endMarker.decimals" options="Directions.endMarker.options"></marker>
 <polylines coords="Directions.polyLines.coords" options="Directions.polyLines.options"></polylines>
 </map>
 
 
 <ul class="list-group">
-  <li class="list-group-item">{{Directions.result.text}}</br>It is {{Directions.result.distance}} and will take about {{Directions.result.duration}}</li>
+  <li class="list-group-item">{{Directions.result.text}}</li>
 </ul>
 
 <ul class="list-group">

@@ -10,10 +10,7 @@ angular
     vm.currentLocation = PlacesService.currentLocation;
     vm.markers = PlacesService.markers;
 
-    vm.map = {
-      center: [initialLocation.lat,initialLocation.long],
-      zoom: 10,
-    };
+    vm.map = PlacesService.map;
 
     vm.places = PlacesService.places;
 
