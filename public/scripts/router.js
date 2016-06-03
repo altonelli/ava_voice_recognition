@@ -4,38 +4,31 @@ angular
 
 config.$inject = ['$stateProvider', '$urlRouterProvider','$locationProvider'];
 
-function config($stateProvider, $urlRouterProvider,$locationProvider){
+function config($stateProvider, $urlRouterProvider,$locationProvider,$state){
   $urlRouterProvider.otherwise('/');
 
   $stateProvider
-    .state('home', {
+    .state('main', {
       url: '/',
       views: {
         "navbar": {
           templateUrl: "/public/templates/nav.html",
-          controller: "UserController as userCtrl"
-        },
-        "content": {
-          templateUrl: '/public/templates/splash.html'
-        }
-      }
-    })
-    .state('main', {
-      url: '/main',
-      views: {
-        "navbar": {
-          templateUrl: "/public/templates/nav.html",
-          controller: "UserController as userCtrl"
+          controller: "UserController as userCtrl",
         },
         "content": {
           templateUrl: '/public/templates/main.html',
           controller: 'WitController as Wit'
         },
-        "button": {
-          templateUrl: '/public/templates/button.html',
-          controller: 'ButtonController as Button'
-        },
+        // "button": {
+        //   templateUrl: '/public/templates/button.html',
+        //   controller: 'ButtonController as Button'
+        // }
       },
+      resolve:{
+        getUser: function(UserService){
+          return UserService.getUser();
+        }
+      }
     })
     .state("main.weather", {
       views:{
@@ -72,6 +65,13 @@ function config($stateProvider, $urlRouterProvider,$locationProvider){
           }
         }
       },
+    })
+    .state('main.rendering',{
+      views: {
+        "result@": {
+          templateUrl: '/public/templates/rendering.html'
+        }
+      }
     })
     .state('login', {
       url: '/login',

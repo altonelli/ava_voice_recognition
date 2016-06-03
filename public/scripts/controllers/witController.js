@@ -1,12 +1,11 @@
-console.log("in wit ctrl");
 
 angular
   .module('avaApp')
   .controller("WitController", WitController);
 
-  WitController.$inject = ['$http', '$state','WitService'];
+  WitController.$inject = ['$http', '$state','WitService', '$q'];
 
-  function WitController( $http, $state, WitService ){
+  function WitController( $http, $state, WitService, $q ){
 
 
     var mic = new Wit.Microphone(document.getElementById("microphone"));
@@ -73,31 +72,23 @@ angular
         console.log('Error:',res);
       });
     } else if (entities.intent.value === "weather") {
+
+      // $state.go('main.rendering');
+
       $state.go('main.weather');
+
     } else if(entities.intent.value === "places" && entities.local_search_query){
+
+      // $state.go('main.rendering');
 
       $state.go('main.places');
 
     } else if(entities.intent.value === "directions" && entities.start && entities.end){
 
+      // $state.go('main.rendering');
+
       $state.go('main.directions');
 
-
-      console.log("Directions!");
-      // $http({
-      //   method: "POST",
-      //   url: "/api/directions",
-      //   data: {
-      //     locationStart: entities.start.value,
-      //     locationEnd: entities.end.value
-      //   }
-      // }).then(function success(res){
-      //   console.log(res.data);
-      //   speak(res.data.text)
-      // }, function error(res){
-      //   speak("My apologies, an error ocurred. Could you please repeat your request?");
-      //   console.log(res);
-      // });
     } else {
       speak("I'm sorry I did not understand that.");
     }
@@ -129,6 +120,22 @@ angular
     return k + "=" + v + "\n";
   }
 
+  function changeToRendering(){
+    var def = $q.defer();
+
+    $state.go('main.rendering').then(success,error);
+
+    return def.promise;
+
+    function success(res){
+      def.resolve(res);
+    }
+
+    function error(res){
+      def.reject(res);
+    }
+
+  }
 
   }
 

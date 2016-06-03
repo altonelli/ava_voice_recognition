@@ -71,6 +71,13 @@ app.get('/logout', function (req, res) {
   res.json({"yeah":"logged out"});
 });
 
+
+app.get('/api/user', function(req,res){
+  console.log("GETTING USER",req.user);
+  res.send({ user: JSON.stringify(req.user) || null });
+});
+
+
 app.post('/api/greeting', controllers.greeting.create);
 app.post('/api/greeting/question', controllers.greetingquestion.create);
 app.post('/api/search', controllers.search.search);

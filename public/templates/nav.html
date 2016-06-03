@@ -8,23 +8,33 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="#">test{{ userCtrl.current_user.firstName }}</a>
+      <div class="navbar-brand" ng-if="userCtrl.currentUser !== null">
+        Hello, {{userCtrl.currentUser.firstName}}.
+      </div>
+      <div class="navbar-brand" ng-if="userCtrl.currentUser === null">
+        Say hello to Ava.
+      </div>
     </div>
 
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-
-      <form class="navbar-form navbar-left" role="search">
-        <div class="form-group">
-          <input type="text" class="form-control" placeholder="Search">
+      <div class="nav navbar-nav navbar-right">
+        <div class="" ng-if="userCtrl.currentUser === null">
+          <form class="navbar-form" ng-submit="userCtrl.logIn()">
+            <div class="form-group">
+              <input type="text" ng-model="userCtrl.user.username" placeholder="Email" class="form-control">
+              <input type="password" ng-model="userCtrl.user.password" placeholder="Password" class="form-control">
+            </div>
+            <input type="submit" name="name" value="Log In" class="btn btn-default">
+            <a href="/signup" class="btn btn-default">Sign Up</a>
+          </form>
         </div>
-        <button type="submit" class="btn btn-default">Submit</button>
-      </form>
-      <ul class="nav navbar-nav navbar-right">
-        <li><a href="/login">Log In</a></li>
-        <li><a href="/signup">Sign Up</a></li>
-        <li ng-click="userCtrl.logOut()"><a href="#">Log Out</a></li>
-      </ul>
+        <div class="" ng-if="userCtrl.currentUser !== null">
+          <li>
+            <a href="/logout" ng-click="userCtrl.logOut()" class="btn btn-default">Log Out</a>
+          </li>
+        </div>
+      </div>
     </div><!-- /.navbar-collapse -->
   </div><!-- /.container-fluid -->
 </nav>

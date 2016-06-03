@@ -18,5 +18,6 @@ function DirectionsController( $http, $state, DirectionsService ){
   console.log(vm.polyLines);
   console.log("end of drections controller");
   console.log($state.current);
+  speak(vm.result.text);
 
 }

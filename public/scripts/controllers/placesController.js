@@ -18,7 +18,7 @@ angular
     vm.places = PlacesService.places;
 
     vm.text = PlacesService.text;
-
+    speak(vm.text);
   }
 
 
