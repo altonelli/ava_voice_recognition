@@ -19,10 +19,10 @@ function config($stateProvider, $urlRouterProvider,$locationProvider,$state){
           templateUrl: '/public/templates/main.html',
           controller: 'WitController as Wit'
         },
-        // "button": {
-        //   templateUrl: '/public/templates/button.html',
-        //   controller: 'ButtonController as Button'
-        // }
+        "button": {
+          templateUrl: '/public/templates/button.html',
+          controller: 'ButtonController as Button'
+        }
       },
       resolve:{
         getUser: function(UserService){

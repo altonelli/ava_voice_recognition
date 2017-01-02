@@ -10,16 +10,16 @@ angular
     vm.testing = function(){
       WitService.entities = {
         intent: {
-          value: "directions"
+          value: "weather"
         },
-        start: {
+        location: {
           value: "Berkeley"
         },
-        end: {
-          value: "San Francisco"
-        },
+        // end: {
+        //   value: "San Francisco"
+        // },
       };
-      $state.go('main.rendering');
+      $state.go('main.weather');
       console.log("exit test btn",WitService.entities);
     };
 

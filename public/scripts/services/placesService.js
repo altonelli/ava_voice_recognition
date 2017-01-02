@@ -101,7 +101,7 @@ self.currentLocation = {
           options: function(){
             return {
               title: place.name,
-              label: place.name,
+              label: place.name[0],
               cursor: place.name,
             };
           },

@@ -4,12 +4,22 @@ var googleKey = process.env['GOOGLE_SECRET_KEY'];
 
 function places(req, taco){
   var search = req.body.search;
+  console.log(search);
   var location = "location="+req.body.location.lat+","+req.body.location.long;
-  var url = "https://maps.googleapis.com/maps/api/place/nearbysearch/json?"+location+"&radius=500&name="+search+"&key="+googleKey;
+  var url = "https://maps.googleapis.com/maps/api/place/nearbysearch/json?"+location+"&radius=5000&keyword="+search+"&key="+googleKey;
+  console.log("url:",url);
   var topList = [];
   request(url,function(err,res,body){
     console.log(body);
     var allResults = JSON.parse(body).results;
+    if (err || allResults.length === 0){
+      var response = {
+        text: "No results found.",
+      };
+      console.log(response);
+      taco.json(response);
+    }
+
     allResults.forEach(function(result,idx){
       if (idx < 5){
         var obj = {};

@@ -6,7 +6,7 @@ var weatherKey = process.env['WEATHER_SECRET_KEY'];
 
 function forecast(req,taco){
   var location = req.body.location;
-  
+
 
   var geocodeUrl = "https://maps.googleapis.com/maps/api/geocode/json?address="+ location +"&key=" + googleKey;
 
@@ -17,11 +17,23 @@ function forecast(req,taco){
   var future = {};
 
   request(geocodeUrl,function(err,res,body){
-    if(err){console.log("Error:",err);}
+    if(err || JSON.parse(body).results.length === 0){
+      console.log("Error:",err);
+      current.text = "I'm sorry I could not find that location.";
+      current.link = "https://www.wunderground.com/";
+      var obj = {
+        current: current
+      };
+      console.log("return obj: " + obj.current.text);
+      taco.json(obj);
+    }
+    else{
+    console.log("geolocation return: "+body);
     coordinates = JSON.parse(body).results[0].geometry.location;
     formattedAddress = JSON.parse(body).results[0].formatted_address;
     console.log(coordinates);
     geolocate(coordinates);
+    }
   });
 
 
@@ -36,7 +48,7 @@ function forecast(req,taco){
       request(currentUrl, function(err,res,body){
         if(err){console.log("Error in current forcast:",err);}
         var result = JSON.parse(body);
-        current.text = "It is currenty "+result.current_observation.temperature_string+" and "+result.current_observation.weather.toLowerCase()+" in "+result.current_observation.display_location.city;
+        current.text = "It is currently "+result.current_observation.temperature_string+" and "+result.current_observation.weather.toLowerCase()+" in "+result.current_observation.display_location.city;
         current.image = result.current_observation.icon_url;
         current.link = result.current_observation.forecast_url;
         return resolve();

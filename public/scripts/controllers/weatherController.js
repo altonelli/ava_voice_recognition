@@ -16,6 +16,9 @@ angular
         console.log("Controller",data);
         vm.info = data;
         vm.text = data.current.text;
+        if (!data.current.image){
+          vm.info.current.image = 'public/assets/pinpoint.png';
+        }
         speak(vm.text);
       });
     }
