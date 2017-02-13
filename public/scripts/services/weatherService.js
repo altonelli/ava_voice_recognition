@@ -3,6 +3,7 @@ angular.module('avaApp')
 
 WeatherService.$inject = ['$http', '$q', 'WitService'];
 function WeatherService($http, $q, WitService) {
+  console.log("WeatherService called");
   var self = this;
   self.location = WitService.entities.location.value;
   self.date = Date.now();

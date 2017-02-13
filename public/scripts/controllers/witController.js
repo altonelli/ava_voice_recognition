@@ -7,7 +7,11 @@ angular
 
   function WitController( $http, $state, WitService, $q ){
 
+    // CHANGE CLIENT KEY HERE //
 
+    var wit_client = "JVSLWMBPAXC2MELTSRHSARVEXWM35CIZ";
+    
+    ////////////////////////////
     var mic = new Wit.Microphone(document.getElementById("microphone"));
   var info = function (msg) {
     document.getElementById("info").innerHTML = msg;
@@ -29,6 +33,11 @@ angular
     WitService.intent = intent;
     WitService.entities = entities;
     WitService.res = res;
+    if (!entities.intent || res.msg_body === ""){
+      console.log("No entities");
+      info("I'm sorry I did not understand that.");
+      return speak("I'm sorry I did not understand that.");
+    }
 
     if (entities.intent.value === "greeting"){
       $http({
@@ -73,26 +82,27 @@ angular
       });
     } else if (entities.intent.value === "weather") {
 
-      // $state.go('main.rendering');
-
+      $state.go('main.rendering');
+      console.log("$state.current.before: " + JSON.stringify($state.current));
       $state.go('main.weather');
+
 
     } else if(entities.intent.value === "places" && entities.local_search_query){
 
-      // $state.go('main.rendering');
+      $state.go('main.rendering');
 
       $state.go('main.places');
 
     } else if(entities.intent.value === "places" && entities.search_query){
       WitService.entities.local_search_query = {};
       WitService.entities.local_search_query.value = entities.search_query.value;
-      // $state.go('main.rendering');
+      $state.go('main.rendering');
 
       $state.go('main.places');
 
     } else if(entities.intent.value === "directions" && entities.start && entities.end){
 
-      // $state.go('main.rendering');
+      $state.go('main.rendering');
 
       $state.go('main.directions');
 
@@ -118,7 +128,7 @@ angular
     }
   };
 
-  mic.connect("JVSLWMBPAXC2MELTSRHSARVEXWM35CIZ");
+  mic.connect(wit_client);
 
   function concatKeyValue (k, v) {
     if (typeof v !== "string") {

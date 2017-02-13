@@ -11,13 +11,13 @@
       <div class="navbar-brand" ng-if="userCtrl.currentUser !== null">
         Hello, {{userCtrl.currentUser.firstName}}.
       </div>
-      <div class="navbar-brand" ng-if="userCtrl.currentUser === null">
+      <div class="navbar-brand ava-brand" ng-if="userCtrl.currentUser === null">
         Say hello to Ava.
       </div>
     </div>
 
     <!-- Collect the nav links, forms, and other content for toggling -->
-    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+    <!-- <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <div class="nav navbar-nav navbar-right">
         <div class="" ng-if="userCtrl.currentUser === null">
           <form class="navbar-form" ng-submit="userCtrl.logIn()">
@@ -35,6 +35,6 @@
           </li>
         </div>
       </div>
-    </div><!-- /.navbar-collapse -->
+    </div> --> <!-- /.navbar-collapse -->
   </div><!-- /.container-fluid -->
 </nav>

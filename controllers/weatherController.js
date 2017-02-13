@@ -18,6 +18,7 @@ function forecast(req,taco){
 
   request(geocodeUrl,function(err,res,body){
     if(err || JSON.parse(body).results.length === 0){
+      console.log("Results:",res);
       console.log("Error:",err);
       current.text = "I'm sorry I could not find that location.";
       current.link = "https://www.wunderground.com/";

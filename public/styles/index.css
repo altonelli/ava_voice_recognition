@@ -1,0 +1,15 @@
+.navbar-header {
+    float: left;
+    text-align: center;
+    width: 100%;
+}
+.navbar-header .ava-brand{
+  float: none;
+  margin-left: 0;
+}
+.content{
+  margin-top: 50px;
+}
+#info{
+  margin-top: 20px;
+}

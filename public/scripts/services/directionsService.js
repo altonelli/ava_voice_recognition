@@ -13,7 +13,7 @@ self.polyLines = {
   coords: [],
   options: function(){
     return {
-      strokeColor: "#42f480"
+      strokeColor: "#41c4f4"
     };
   }
 };

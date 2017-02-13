@@ -35,6 +35,17 @@ function config($stateProvider, $urlRouterProvider,$locationProvider,$state){
         "result@": {
           templateUrl: '/public/templates/weather.html',
           controller: 'WeatherController as Weather',
+          reload: true,
+          resolve: {
+            WeatherService: 'WeatherService',
+            weather: function(WeatherService){
+              return WeatherService.getWeather();
+            }
+          },
+          onExit: function (){
+            console.log("WOOOOOOO!!!!!");
+            // console.log("finished the switching state" + JSON.stringify($state.current));
+          }
         }
       },
     })
@@ -43,6 +54,7 @@ function config($stateProvider, $urlRouterProvider,$locationProvider,$state){
         "result@": {
           templateUrl: '/public/templates/places.html',
           controller: 'PlacesController as Places',
+          reload: true,
           resolve: {
             PlacesService: 'PlacesService',
             markers: function(PlacesService){
@@ -57,6 +69,7 @@ function config($stateProvider, $urlRouterProvider,$locationProvider,$state){
         "result@": {
           templateUrl: '/public/templates/directions.html',
           controller: 'DirectionsController as Directions',
+          reload: true,
           resolve: {
             DirectionsService: 'DirectionsService',
             directions: function(DirectionsService){
